@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { withBase } from "@/lib/base-path";
 
 export const metadata: Metadata = {
   title: "Terrarium — A little world of green",
@@ -8,8 +9,8 @@ export const metadata: Metadata = {
     "codex-preview": "development",
   },
   icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
+    icon: withBase("/favicon.svg"),
+    shortcut: withBase("/favicon.svg"),
   },
 };
 

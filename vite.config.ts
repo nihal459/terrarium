@@ -50,7 +50,11 @@ export default defineConfig(async () => {
   // Wrangler snapshots its log path while the Cloudflare plugin is imported.
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
+  // Static hosts serving from a subpath (GitHub Pages) need prefixed asset URLs.
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH;
+
   return {
+    ...(basePath ? { base: `${basePath}/` } : {}),
     server: {
       ...(managedLinux ? { host: "0.0.0.0", allowedHosts: ["terminal.local"] } : {}),
       ...(isCodexSeatbeltSandbox ? { watch: { useFsEvents: false, usePolling: true } } : {}),
